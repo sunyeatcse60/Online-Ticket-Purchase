@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bus Ticket Landing Page</title>
+    <title>Online Bus Ticket</title>
 
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.23/dist/full.min.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
@@ -14,40 +14,48 @@
 </head>
 
 <body class="bg-gray-100 font-sans">
-    <div class="navbar bg-base-100">
-        <div class="navbar-start">
-            <div class="dropdown">
-                <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M4 6h16M4 12h8m-8 6h16" />
-                    </svg>
+
+    <nav class="fixed top-0 left-0 w-full bg-white shadow-md h-20 z-50">
+
+        <div class="navbar bg-base-100 ">
+            <div class="navbar-start">
+                <div class="dropdown">
+                    <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h8m-8 6h16" />
+                        </svg>
+                    </div>
+                    <ul tabindex="0"
+                        class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                        <li><a>Home</a></li>
+                        <li><a>Ticket</a></li>
+                        <li><a>About</a></li>
+                    </ul>
                 </div>
-                <ul tabindex="0"
-                    class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-                    <li><a>Item 1</a></li>
-                    <li><a>Item 3</a></li>
+                <a class="btn btn-ghost text-xl">BD Ticket</a>
+            </div>
+            <div class="navbar-center hidden lg:flex">
+                <ul class="menu menu-horizontal px-1">
+                    <li><a>Home</a></li>
+                    <li><a>Ticket</a></li>
+                    <li><a>About</a></li>
                 </ul>
             </div>
-            <a class="btn btn-ghost text-xl">daisyUI</a>
+            <div class="navbar-end gap-5">
+                <a class="btn">login</a>
+                <a class="btn">Register</a>
+            </div>
         </div>
-        <div class="navbar-center hidden lg:flex">
-            <ul class="menu menu-horizontal px-1">
-                <li><a>Item 1</a></li>
-                <li><a>Item 3</a></li>
-            </ul>
-        </div>
-        <div class="navbar-end">
-            <a class="btn">Button</a>
-        </div>
-    </div>
-
+    </nav>
 
     <main>
-
+      
+          
         <!-- seat booking section -->
-        <section class="bg-white px-8 py-5 w-11/12 mx-auto rounded-2xl shadow-sm grid grid-cols-3 gap-5 mt-5 mb-5">
+        <section
+            class="bg-white px-8 py-5 w-11/12 mx-auto rounded-2xl shadow-sm grid grid-cols-3 gap-5 mt-5 mb-5 pt-20">
 
 
             <div class="col-span-2">
@@ -71,6 +79,13 @@
 
 
                 <div class="border-b-2 border-dashed my-4"></div>
+
+
+                <div class="bg-green-400  lg:w-1/12 sm:w-2/12 rounded-lg p-3 text-bold">
+                    <i></i>
+                    <span id="available-seat">40</span>
+                    <span>Seats</span>
+                </div>
 
 
                 <section class="grid grid-cols-12 items-center gap-y-5 mr-20 ">
@@ -238,8 +253,8 @@
                             <p>Price</p>
                         </h3>
                         <div class="border-b-2 border-dashed my-4"></div>
-                        <ul class="space-y-5">
-                            <h3 id="selected-seat" class="font-bold text-3xl text-error capitalize text-center ">No Seat Booked</h3>
+                        <ul id="selected-seat" class="space-y-5">
+                            <h3 id="default-text" class="font-bold text-xl text-error capitalize text-center ">No Seat Booked</h3>
                         </ul>
                         <div class="border-b-2 border-dashed my-4"></div>
 
@@ -247,23 +262,23 @@
                             <p>Total Price</p>
                             <p>
                                 <span>BDT</span>
-                                <span>****</span>
+                                <span id="total-price">****</span>
                             </p>
                         </div>
 
                         <div class="border-b-2 border-dashed my-4"></div>
 
-                        <div class="flex items-center gap-2 border-y-2 my-2 border-dashed text-lg font-semibold">
-                            <input class="input my-5 w-full input-primary border-primary" disabled type="text"
+                        <div id="show-price" class="flex items-center gap-2 border-y-2 my-2 border-dashed text-lg font-semibold">
+                            <input id="coupne-input" class="input my-5 w-full input-primary border-primary" disabled type="text"
                                 placeholder="have any coupne">
-                            <button class="btn btn-primary" disabled>Apply</button>
+                            <button id="copune-btn" class="btn btn-primary" disabled>Apply</button>
                         </div>
 
                         <div class="text-lg font-semibold flex justify-between ">
                             <p>Grand Price</p>
                             <p>
                                 <span>BDT</span>
-                                <span>****</span>
+                                <span id="grand-total">****</span>
                             </p>
                         </div>
 
@@ -287,12 +302,13 @@
 
                         <label class="form-control w-full my-3">
                             <div class="label">
-                                <span class="label-text font-bold text-base">Passenger name*</span>
+                                <span class="label-text font-bold text-base">Email Id*</span>
                             </div>
-                            <input type="text" placeholder="Enter passenger name" class="input input-bordered w-full" />
+                            <input type="text" placeholder="Enter email id" class="input input-bordered w-full" />
 
                         </label>
-                        <button onclick="my_modal_5.showModal()" class="btn bg-primary mt-5 text-lg text-white uppercase w-full">Next</button>
+                        <button onclick="my_modal_5.showModal()"
+                            class="btn bg-primary mt-5 text-lg text-white uppercase w-full">Next</button>
 
                         <!-- Open the modal using ID.showModal() method -->
                         <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
@@ -381,7 +397,7 @@
     </div>
   </section> -->
 
-  <script src="./button seat.js"></script>
+    <script src="./button seat.js"></script>
 
     <!-- Footer -->
     <footer class="bg-blue-500 text-white py-8">
